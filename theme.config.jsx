@@ -3,12 +3,21 @@ import { useRouter } from 'next/router'
 const SITE_URL = 'https://docs.pinarkive.com'
 const DEFAULT_TITLE = 'PinArkive — Your decentralized storage solution.'
 const DEFAULT_DESCRIPTION = 'Documentation for PinArkive: upload, pin and manage IPFS content using clusters and gateways. Your decentralized storage solution.'
-const OG_IMAGE = 'https://pinarkive.com/img/logo_fullmark.png'
+const OG_IMAGE = 'https://pinarkive.com/img/og-image.png'
 
 export default {
   logo: <span style={{ fontWeight: 700 }}>PinArkive</span>,
   project: {
-    link: 'https://github.com/pinarkive',
+    link: 'https://github.com/jowy81/pinarkive-docs-site',
+  },
+  docsRepositoryBase:
+    'https://github.com/jowy81/pinarkive-docs-site/tree/main/pages',
+  feedback: {
+    content: 'Question? Give us feedback →',
+    labels: 'feedback',
+  },
+  editLink: {
+    content: 'Edit this page on GitHub',
   },
   useNextSeoProps() {
     const { asPath } = useRouter()

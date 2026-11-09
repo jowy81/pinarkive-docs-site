@@ -1,18 +1,56 @@
 ---
-title: PinArkive Account Plans & Limits
-description: View and manage your PinArkive plan, storage and request limits, timelocks, and billing in the dashboard. API returns 403 when limits are exceeded.
+title: PinArkive Plans, pricing, and limits
+description: PinArkive plan tiers, monthly and annual pricing (taxes not included), storage and API limits. Timelocks from Developer upward.
 ---
 
 # Plans
 
-Plans, quotas, and billing are managed in the **Pinarkive dashboard**.
+PinArkive offers cumulative tiers: each plan includes everything in the previous tier plus the extras listed below. **Taxes not included** on all paid prices. Annual billing is **20% off** (pay monthly × 12 × 0.8).
 
-- **View current plan:** Log in at [pinarkive.com](https://pinarkive.com) and open billing or plan settings.
-- **Limits:** Storage, request limits, and features (e.g. timelocks, clusters) depend on your plan. The API may return **403** when a limit is exceeded (e.g. storage or upload size).
-- **Upgrade or change plan:** Use the dashboard or contact support.
-
-The public API does not expose a dedicated “plans” endpoint. For exact limits and pricing, see the dashboard or [pinarkive.com](https://pinarkive.com).
+Sign up and manage billing in the dashboard: [app.pinarkive.com](https://app.pinarkive.com/register).
 
 ---
 
-**Next steps:** [Clusters](/account/clusters) · [Tokens](/account/tokens) · [Rate limits](/reference/rate-limits)
+## Pricing
+
+| Plan | Monthly | Annual (20% off) |
+|------|---------|------------------|
+| **Free** | Free | — |
+| **Starter** | €2.99 | €28.70 (€2.39/mo) |
+| **Developer** | €9.99 | €95.90 (€7.99/mo) |
+| **Professional** | €29.99 | €287.90 (€23.99/mo) |
+| **Enterprise** | Custom | Custom |
+
+---
+
+## Limits by plan
+
+Storage uses binary units: **1 GB = 1024³ bytes** (displayed below as rounded GB/MB).
+
+| Limit | Free | Starter | Developer | Professional | Enterprise |
+|-------|------|---------|-----------|--------------|------------|
+| Storage | 50 MB | 1 GB | 20 GB | 100 GB | Custom |
+| Max file size | 25 MB | 500 MB | 2 GB | 10 GB | Custom |
+| Uploads per second (per API key)* | 1 | 2 | 10 | 25 | Custom |
+| Gateway bandwidth / month* | 1 GB | 10 GB | 100 GB | 500 GB | Custom |
+| Download retention per file* | Account lifetime | 7 days | 30 days | 90 days (+ CSV/API) | Custom |
+| Timelocks | — | — | Yes | Yes | Yes |
+| Support | Email (all plans) | Email | Email | Priority + advanced metrics | Priority + advanced metrics |
+
+\* Enforced by the API according to your plan (rate limits, gateway metering, per-CID download counters). Exact enforcement is plan-dependent on the backend.
+
+**Timelocks** are available from **Developer** (€9.99/mo) and above. Community chat (e.g. Telegram) is not official support.
+
+**Professional** and **Enterprise** include priority support and **advanced metrics** (dashboards and operational insight — not basic status charts only).
+
+---
+
+## Upgrades and billing
+
+- View or change your plan in the app under **Plans** after logging in at [app.pinarkive.com](https://app.pinarkive.com).
+- The API returns **403** when a plan limit is exceeded (storage, file size, feature flags such as timelocks or regional clusters).
+- There is no public unauthenticated “list all plans” JSON for every field above; dashboard and checkout reflect live pricing.
+
+---
+
+**Next steps:** [Rate limits](/reference/rate-limits) · [Clusters](/account/clusters) · [Tokens](/account/tokens) · [Environments](/concepts/environments)

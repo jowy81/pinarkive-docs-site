@@ -1,5 +1,6 @@
 {
   "gateways": "Gateways",
   "clusters": "Clusters",
-  "timelocks": "Timelocks"
+  "timelocks": "Timelocks",
+  "environments": "Environments"
 }
