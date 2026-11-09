@@ -20,18 +20,26 @@ Pinarkive organizes pinning by **clusters** — regional or logical groups that 
 
 You can target a cluster when uploading or pinning via the API (form/body field `cl`). Your allowed clusters are returned by [GET /users/me/clusters](/api-reference/get-clusters).
 
-## Gateway rules
+## Gateway rules (production)
 
 | Role | URL |
 |------|-----|
 | **Primary (global)** | `https://gateway.pinarkive.com/ipfs/<cid>` |
-| **Secondary** | `https://ipfs.io/ipfs/<cid>` |
+| **Secondary (optional)** | `https://ipfs.io/ipfs/<cid>` — not used in the [DEV sandbox](/concepts/environments) |
 | **eu** | `https://eu1.gateway.pinarkive.com/ipfs/<cid>` |
 | **na** | `https://na1.gateway.pinarkive.com/ipfs/<cid>` |
 | **us** | `https://us1.gateway.pinarkive.com/ipfs/<cid>` |
 | **de** | `https://de1.gateway.pinarkive.com/ipfs/<cid>` |
 
 Replace `<cid>` with your content's CID.
+
+### DEV sandbox
+
+| Cluster ID | Gateway |
+|------------|---------|
+| `cl0-global-dev` | `https://gateway-dev.pinarkive.com/ipfs/<cid>` |
+| `cl1-eu-dev` | `https://eu1-gateway-dev.pinarkive.com/ipfs/<cid>` |
+| `cl2-eu-es-dev` | `https://es1-gateway-dev.pinarkive.com/ipfs/<cid>` |
 
 ## Choosing a cluster
 
