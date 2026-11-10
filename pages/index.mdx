@@ -43,7 +43,7 @@ See [Authentication](/authentication) for details and [Quick Start](/quickstart/
 
 Get from zero to your first upload in four steps:
 
-1. **Create account** — Sign up at [pinarkive.com](https://pinarkive.com)
+1. **Create account** — Sign up at [app.pinarkive.com](https://app.pinarkive.com/register)
 2. **Generate API key** — Dashboard → API Keys, scope `files:write`
 3. **Upload a file** — `POST /files` with multipart form data
 4. **Get CID** — Response includes `cid`; use it at `https://gateway.pinarkive.com/ipfs/<cid>`
@@ -71,9 +71,11 @@ Get from zero to your first upload in four steps:
 
 | App | Description | Link |
 |-----|-------------|------|
-| **Upload Playground** | Drag-and-drop file uploads | [sample1.pinarkive.com](https://sample1.pinarkive.com) |
-| **Encrypted Share** | Secure, time-limited sharing | [sample2.pinarkive.com](https://sample2.pinarkive.com) |
-| **API Playground** | Test API in the browser | [playground.pinarkive.com](https://playground.pinarkive.com) |
+| **Upload demo** | Drag-and-drop uploads (sandbox) | [sample1.pinarkive.com](https://sample1.pinarkive.com) |
+| **Secure Share** | Client-side encrypted sharing demo | [sample2.pinarkive.com](https://sample2.pinarkive.com) |
+| **API Playground** | Call API endpoints in the browser | [playground.pinarkive.com](https://playground.pinarkive.com) |
+
+Public demos use the [DEV sandbox](/concepts/environments); your integration should use production `api.pinarkive.com`.
 
 ---
 

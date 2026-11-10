@@ -1,28 +1,30 @@
 ---
-title: PinArkive Upload Playground — Drag-and-Drop Demo
-description: "Try the PinArkive Upload Playground: drag-and-drop file uploads, get CID and gateway URL. Reference for building your own upload UI."
+title: Upload demo — Drag-and-drop sandbox
+description: "Try the PinArkive Upload demo (sample1): drag-and-drop file uploads against the DEV sandbox, get CID and gateway URL."
 ---
 
-# Upload Playground
+# Upload demo
 
-The **Upload Playground** is a demo app that lets you upload files to Pinarkive with a simple drag-and-drop interface. It shows the returned CID and a gateway URL you can open or share.
+The **Upload demo** (`sample1.pinarkive.com`) lets you upload files through a simple UI. It uses the [DEV sandbox](/concepts/environments) (not production).
 
 ## Try it
 
-**[Open Upload Playground →](https://sample1.pinarkive.com)**
+**[Open Upload demo →](https://sample1.pinarkive.com)**
 
 ## What it does
 
-- Drag and drop one or more files
-- Upload to the Pinarkive API
-- Display CID and gateway link for each file
+- Drag and drop one or more files (demo size cap)
+- Upload via a server-side proxy to `https://api-dev.pinarkive.com`
+- Display CID and gateway link for each file in **your browser session**
+- Fixed **48-hour timelock** on uploads and pins (files expire automatically)
 - Copy link or open in a new tab
 
 ## Use case
 
-Use this as a reference for building your own upload UI (e.g. in a Next.js or React app). The flow is: get file → call `POST /files` with the file → show the response and gateway URL.
+Reference for building your own upload UI (Next.js or React): get file → `POST /files` → show CID and gateway URL.
 
 ## Related
 
-- [Upload your first file](/quickstart/upload-first-file) — Minimal upload with curl
+- [Upload your first file](/quickstart/upload-first-file) — Production API with curl
 - [POST /files](/api-reference/post-files) — API reference
+- [API Playground](/examples/api-playground) — Raw endpoint testing

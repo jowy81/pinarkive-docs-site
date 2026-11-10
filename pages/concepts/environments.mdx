@@ -1,0 +1,34 @@
+---
+title: Environments — Production API and sandbox demos
+description: PinArkive production API (api.pinarkive.com) vs the DEV sandbox used by public demos. Customer integrations always use production.
+---
+
+# Environments
+
+Customer applications and SDK examples in this documentation target **production**:
+
+```text
+https://api.pinarkive.com/api/v3
+```
+
+Production gateways (`https://gateway.pinarkive.com`, regional hosts, and so on) are documented under [Gateways](/concepts/gateways).
+
+---
+
+## Sandbox (DEV)
+
+The **API Playground** (`playground.pinarkive.com`), **Upload demo** (`sample1.pinarkive.com`), and **Secure Share** (`sample2.pinarkive.com`) are public marketing demos. They are served on production hostnames but their **server-side proxy** calls the DEV API:
+
+| Setting | Value |
+|---------|--------|
+| API base | `https://api-dev.pinarkive.com` |
+| Gateway | DEV gateway hosts (e.g. `https://gateway-dev.pinarkive.com`) — see [Gateways](/concepts/gateways) |
+| Credentials | A dedicated **DEV demo** API key (never shipped to the browser) |
+
+Demos embed a **48-hour timelock** on every upload and pin (`timelock` as ISO 8601, e.g. `2026-11-12T09:00:00.000Z`). Sandbox content expires automatically after two days. Uploads from your browser are scoped to **your session** (list/recent views only show what you uploaded in that visit).
+
+Use the sandbox to try the API without affecting production data. When you build an integration, create your own account and API keys on production.
+
+---
+
+**Related:** [Upload demo](/examples/upload-playground) · [API Playground](/examples/api-playground) · [Secure Share](/examples/encrypted-share) · [Authentication](/authentication)

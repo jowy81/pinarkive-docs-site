@@ -23,9 +23,11 @@ function ensureGtag(measurementId: string) {
     window.dataLayer.push(arguments);
   };
   window.gtag("js", new Date());
+  const contentGroup = (process.env.NEXT_PUBLIC_GA_CONTENT_GROUP || "docs").trim();
   window.gtag("config", measurementId, {
     send_page_view: false,
     anonymize_ip: true,
+    content_group: contentGroup,
   });
 
   const script = document.createElement("script");
@@ -39,11 +41,13 @@ function ensureGtag(measurementId: string) {
 function sendPageView(measurementId: string, path?: string) {
   if (typeof window === "undefined" || !window.gtag || !measurementId) return;
   const pagePath = path ?? window.location.pathname + window.location.search;
+  const contentGroup = (process.env.NEXT_PUBLIC_GA_CONTENT_GROUP || "docs").trim();
   window.gtag("event", "page_view", {
     page_path: pagePath,
     page_title: document.title,
     page_location: window.location.origin + pagePath,
     send_to: measurementId,
+    content_group: contentGroup,
   });
 }
 

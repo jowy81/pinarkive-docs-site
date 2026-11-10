@@ -1,11 +1,11 @@
 ---
-title: PinArkive API Playground — Test API in Browser
-description: "Test PinArkive API endpoints (upload, pin, list, delete) in the browser. Paste API key, choose endpoint, see request and response. playground.pinarkive.com."
+title: API Playground — Test PinArkive API v3
+description: "Test PinArkive API endpoints (upload, pin, list, delete) in the browser against the DEV sandbox. playground.pinarkive.com."
 ---
 
 # API Playground
 
-The **API Playground** lets you try Pinarkive API endpoints (upload, pin, list, delete) directly in the browser. You can paste your API key, choose an endpoint, and see the request and response.
+The **API Playground** (`playground.pinarkive.com`) lets you run PinArkive API v3 operations from the browser. Requests go through a server-side proxy to **`https://api-dev.pinarkive.com`** with a dedicated demo API key ([sandbox](/concepts/environments)).
 
 ## Try it
 
@@ -13,21 +13,26 @@ The **API Playground** lets you try Pinarkive API endpoints (upload, pin, list, 
 
 ## What it does
 
-- Select an endpoint (e.g. Upload, Pin, GET files, Delete)
-- Enter your API key (or use a demo key if provided)
-- Adjust parameters (file, CID, cluster, etc.)
-- Send the request and view the response
+- Upload, pin, list, and delete via `/api/*` routes on the playground host
+- **List files** returns only items uploaded in your session
+- Code snippets for curl, JavaScript, Python, and other SDKs (examples use the DEV API base)
+- Uploads and pins always include a **48-hour** `timelock` (ISO 8601), not `timelockHours`
+- Rate limited per IP for fair use
 
-## Use case
+### Example (DEV sandbox)
 
-Use the playground to:
+```bash
+curl -X POST https://api-dev.pinarkive.com/api/v3/files \
+  -H "Authorization: Bearer YOUR_DEV_API_KEY" \
+  -F "file=@example.png" \
+  -F "cl=cl0-global" \
+  -F "timelock=2026-11-12T09:00:00.000Z"
+```
 
-- Verify your API key and permissions
-- Test request bodies and query parameters
-- Inspect response shape and status codes
-- Debug before integrating in your app
+Use a timestamp roughly 48 hours ahead of the request time.
 
 ## Related
 
-- [Upload your first file](/quickstart/upload-first-file) — API key and first upload
-- [API Reference](/api-reference/post-files) — Full endpoint docs
+- [Quick Start](/quickstart/quick-start) — Production onboarding
+- [Rate limits](/reference/rate-limits) — Plan throughput
+- [Upload demo](/examples/upload-playground) — Drag-and-drop UI reference

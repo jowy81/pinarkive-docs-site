@@ -1,17 +1,25 @@
 ---
 title: PinArkive API Rate Limits — 429 & Retry-After
-description: "PinArkive API rate limits per API key. 429 Too Many Requests, Retry-After header, X-RateLimit-* headers, and backoff strategies."
+description: "PinArkive API rate limits per API key and plan. Uploads per second, 429 Too Many Requests, Retry-After header, and backoff strategies."
 ---
 
 # Rate Limits
 
-The API is rate limited per API key (and per account) to ensure fair use and stability. When you exceed the limit, the server returns **429 Too Many Requests**.
+The API is rate limited per **API key** (and per account) to ensure fair use and stability. When you exceed the limit, the server returns **429 Too Many Requests**.
 
----
+Plan-specific **upload throughput** (sustained uploads per second per key) is part of your subscription:
 
-## Limits
+| Plan | Uploads / second (per API key)* |
+|------|----------------------------------|
+| Free | 1 |
+| Starter | 2 |
+| Developer | 10 |
+| Professional | 25 |
+| Enterprise | Custom |
 
-Limits apply per API key and may vary by plan. Typical values are on the order of **dozens to hundreds of requests per minute** (exact numbers are configured per deployment). When in doubt, implement backoff and respect the `Retry-After` header.
+\* Applied by the backend per plan. Other endpoints may also return **429** when global or per-key windows are exceeded (exact windows are deployment configuration).
+
+General API traffic is typically on the order of **dozens to hundreds of requests per minute** per key in addition to upload throughput. When in doubt, implement backoff and respect the `Retry-After` header.
 
 ---
 
@@ -86,7 +94,6 @@ async function uploadWithRetry(formData) {
 When you get a 429, read the `Retry-After` header and wait before retrying:
 
 ```bash
-# After receiving 429, wait the indicated seconds, then retry
 curl -X POST https://api.pinarkive.com/api/v3/files \
   -H "X-API-Key: YOUR_API_KEY" \
   -F "file=@image.png"
@@ -96,6 +103,7 @@ curl -X POST https://api.pinarkive.com/api/v3/files \
 
 ## Next steps
 
+- [Plans](/account/plans) — Storage, file size, and plan limits
 - [Error handling](/reference/errors) — All error codes and status codes
 - [Status codes](/reference/status-codes) — HTTP status reference
 - [Quick Start](/quickstart/quick-start) — Upload your first file

@@ -1,28 +1,25 @@
 ---
-title: PinArkive Encrypted Share — Secure Time-Limited Sharing
-description: "Encrypted Share demo: upload a file, get a shareable link, set expiration. AES-256-GCM encryption. Try it at sample2.pinarkive.com."
+title: Secure Share demo — Client-side encryption
+description: "Secure Share demo (sample2): encrypt in the browser, upload ciphertext to the DEV sandbox, share password-protected links."
 ---
 
-# Encrypted Share
+# Secure Share
 
-The **Encrypted Share** example demonstrates secure, time-limited file sharing. You upload a file, get a shareable link, and optionally set an expiration so the content is only available for a limited time.
+The **Secure Share** demo (`sample2.pinarkive.com`) encrypts files in the browser before upload. Only someone with the password can decrypt. Uploads use the [DEV sandbox](/concepts/environments).
 
 ## Try it
 
-**[Open Encrypted Share →](https://sample2.pinarkive.com)**
+**[Open Secure Share →](https://sample2.pinarkive.com)**
 
 ## What it does
 
-- Upload a file with optional expiration (timelock)
-- Receive a shareable link (gateway URL)
-- Optional encryption or access control flow (depending on demo implementation)
-- Link can expire after a set time
-
-## Use case
-
-Use this as inspiration for temporary sharing features, secure document delivery, or time-limited CDN-style links. It combines [POST /files](/api-reference/post-files) (or [POST /pin](/api-reference/post-pin)) with [Timelocks](/concepts/timelocks).
+- Encrypt with **AES-256-GCM**; key derived via **PBKDF2** (SHA-256, 250k iterations)
+- Password never sent to PinArkive servers
+- Upload encrypted payload to IPFS via the demo proxy (48-hour timelock on the DEV API)
+- Share link + password out of band
 
 ## Related
 
-- [Timelocks](/concepts/timelocks) — Expiration and temporary pins
-- [POST /files](/api-reference/post-files) — Set `timelock` when uploading (premium)
+- [Environments](/concepts/environments) — Sandbox vs production
+- [Upload demo](/examples/upload-playground) — Plain uploads
+- [Timelocks](/concepts/timelocks) — Expiration on pins

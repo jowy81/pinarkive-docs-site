@@ -5,9 +5,21 @@ description: "How to serve IPFS content via PinArkive gateways: primary and seco
 
 # Gateways
 
-Gateways let you serve IPFS content over HTTP. Pinarkive provides primary gateways and supports the public IPFS gateway as a fallback.
+Gateways let you serve IPFS content over HTTP. Pinarkive provides cluster-specific HTTPS gateways. Production apps may also use the public IPFS gateway for redundancy; the DEV sandbox and playground use **only** the Pinarkive DEV gateways (no silent `ipfs.io` fallback).
 
-## Primary gateway
+## DEV sandbox gateways
+
+When using the [sandbox API](/concepts/environments) (`https://api-dev.pinarkive.com`), serve content through the matching DEV gateway host on `eu-es-ion-03`:
+
+| Cluster (DEV) | Gateway base |
+|---------------|--------------|
+| **global** (`cl0-global-dev`) | `https://gateway-dev.pinarkive.com/ipfs/<cid>` |
+| **eu** (`cl1-eu-dev`) | `https://eu1-gateway-dev.pinarkive.com/ipfs/<cid>` |
+| **es** (`cl2-eu-es-dev`) | `https://es1-gateway-dev.pinarkive.com/ipfs/<cid>` |
+
+If a gateway returns an error (for example while nginx is being updated), fix the DEV gateway on the host — do not fall back to `ipfs.io` in sandbox demos.
+
+## Primary gateway (production)
 
 Use the main Pinarkive gateway for content pinned to the **global** cluster:
 

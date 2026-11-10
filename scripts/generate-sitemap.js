@@ -33,6 +33,7 @@ const ROUTES = [
   { path: 'concepts/gateways', priority: '0.8', changefreq: 'monthly' },
   { path: 'concepts/clusters', priority: '0.8', changefreq: 'monthly' },
   { path: 'concepts/timelocks', priority: '0.8', changefreq: 'monthly' },
+  { path: 'concepts/environments', priority: '0.8', changefreq: 'monthly' },
   { path: 'cli/installation', priority: '0.8', changefreq: 'monthly' },
   { path: 'cli/commands', priority: '0.8', changefreq: 'monthly' },
   { path: 'examples/upload-playground', priority: '0.7', changefreq: 'monthly' },
