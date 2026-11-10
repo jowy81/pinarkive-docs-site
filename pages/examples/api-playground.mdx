@@ -16,7 +16,20 @@ The **API Playground** (`playground.pinarkive.com`) lets you run PinArkive API v
 - Upload, pin, list, and delete via `/api/*` routes on the playground host
 - **List files** returns only items uploaded in your session
 - Code snippets for curl, JavaScript, Python, and other SDKs (examples use the DEV API base)
+- Uploads and pins always include a **48-hour** `timelock` (ISO 8601), not `timelockHours`
 - Rate limited per IP for fair use
+
+### Example (DEV sandbox)
+
+```bash
+curl -X POST https://api-dev.pinarkive.com/api/v3/files \
+  -H "Authorization: Bearer YOUR_DEV_API_KEY" \
+  -F "file=@example.png" \
+  -F "cl=cl0-global" \
+  -F "timelock=2026-11-12T09:00:00.000Z"
+```
+
+Use a timestamp roughly 48 hours ahead of the request time.
 
 ## Related
 

@@ -25,7 +25,7 @@ The **API Playground** (`playground.pinarkive.com`), **Upload demo** (`sample1.p
 | Gateway | DEV gateway hosts (e.g. `https://gateway-dev.pinarkive.com`) — see [Gateways](/concepts/gateways) |
 | Credentials | A dedicated **DEV demo** API key (never shipped to the browser) |
 
-Demos embed a **timelock** on uploads so sandbox content expires automatically. Uploads from your browser are scoped to **your session** (list/recent views only show what you uploaded in that visit).
+Demos embed a **48-hour timelock** on every upload and pin (`timelock` as ISO 8601, e.g. `2026-11-12T09:00:00.000Z`). Sandbox content expires automatically after two days. Uploads from your browser are scoped to **your session** (list/recent views only show what you uploaded in that visit).
 
 Use the sandbox to try the API without affecting production data. When you build an integration, create your own account and API keys on production.
 

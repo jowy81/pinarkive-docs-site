@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-10
+
+- Sandbox example pages: 48-hour `timelock` (ISO 8601) and DEV API curl sample in API Playground docs.
+- Environments page clarifies demo expiry after 48 hours.
+
 ## 2026-11-09
 
 - Gateways and clusters docs: DEV gateway hosts, no ipfs.io fallback in sandbox.
