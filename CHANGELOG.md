@@ -2,6 +2,7 @@
 
 ## 2026-11-10
 
+- Light mode: fenced code blocks keep the dark teal panel and use dark-theme Shiki token colors so syntax, copy controls, and line highlights stay readable (matches playground).
 - Brand alignment (Arkive Teal / A1): local logo, favicon, and OG assets; Nextra theme tokens, navbar links, footer, and prose/code styles matching pinarkive.com and app.pinarkive.com.
 - Sandbox example pages: 48-hour `timelock` (ISO 8601) and DEV API curl sample in API Playground docs.
 - Environments page clarifies demo expiry after 48 hours.
