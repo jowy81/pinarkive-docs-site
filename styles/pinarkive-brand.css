@@ -14,6 +14,7 @@
   --pk-border: #cfdcdd;
   --pk-border-strong: #889699;
   --pk-theme-color: #0b6e78;
+  /* Playground-style panel — same in both page themes */
   --pk-code-block-bg: #07464c;
   --pk-code-block-fg: #e8f3f4;
 }
@@ -32,7 +33,7 @@
   --pk-border: #2a4246;
   --pk-border-strong: #5c6f72;
   --pk-theme-color: #0a1517;
-  --pk-code-block-bg: #16373b;
+  --pk-code-block-bg: #07464c;
   --pk-code-block-fg: #e8f3f4;
 }
 
@@ -111,20 +112,83 @@ footer hr {
   background: var(--pk-primary-hover) !important;
 }
 
-/* Code blocks — app prose pre pattern */
-.nextra-content pre.nx-bg-primary-700\/5,
-.dark .nextra-content pre.dark\:nx-bg-primary-300\/10,
+/*
+ * Fenced code blocks: dark teal panel in both page themes (playground parity).
+ * Force Shiki “dark” token vars on the <pre> so light page mode does not leak
+ * dark-grey/green/purple syntax onto the dark panel.
+ */
 .nextra-code-block pre {
+  --shiki-color-text: oklch(86.07% 0 0);
+  --shiki-color-background: transparent;
+  --shiki-token-constant: oklch(76.85% 0.121 252.34);
+  --shiki-token-string: oklch(81.11% 0.124 55.08);
+  --shiki-token-comment: oklch(55.18% 0.017 251.27);
+  --shiki-token-keyword: oklch(72.14% 0.162 15.49);
+  --shiki-token-function: oklch(72.67% 0.137 299.15);
+  --shiki-token-string-expression: oklch(69.28% 0.179 143.2);
+  --shiki-token-punctuation: oklch(79.21% 0 0);
+  --shiki-token-link: var(--shiki-token-string);
+  --shiki-color-ansi-black: #586069;
+  --shiki-color-ansi-black-dim: #58606980;
+  --shiki-color-ansi-red: #ea4a5a;
+  --shiki-color-ansi-red-dim: #ea4a5a80;
+  --shiki-color-ansi-green: #34d058;
+  --shiki-color-ansi-green-dim: #34d05880;
+  --shiki-color-ansi-yellow: #ffea7f;
+  --shiki-color-ansi-yellow-dim: #ffea7f80;
+  --shiki-color-ansi-blue: #2188ff;
+  --shiki-color-ansi-blue-dim: #2188ff80;
+  --shiki-color-ansi-magenta: #b392f0;
+  --shiki-color-ansi-magenta-dim: #b392f080;
+  --shiki-color-ansi-cyan: #39c5cf;
+  --shiki-color-ansi-cyan-dim: #39c5cf80;
+  --shiki-color-ansi-white: #d1d5da;
+  --shiki-color-ansi-white-dim: #d1d5da80;
+  --shiki-color-ansi-bright-black: #959da5;
+  --shiki-color-ansi-bright-red: #f97583;
+  --shiki-color-ansi-bright-green: #85e89d;
+  --shiki-color-ansi-bright-yellow: #ffea7f;
+  --shiki-color-ansi-bright-blue: #79b8ff;
+  --shiki-color-ansi-bright-magenta: #b392f0;
+  --shiki-color-ansi-bright-cyan: #56d4dd;
+  --shiki-color-ansi-bright-white: #fafbfc;
+
   background: var(--pk-code-block-bg) !important;
   color: var(--pk-code-block-fg) !important;
   border: 1px solid var(--pk-border-strong);
 }
 
-.nextra-content pre code,
-.nextra-code-block pre code {
+.nextra-code-block pre > code,
+.nextra-content pre code {
   background: transparent !important;
   border: none !important;
   color: inherit !important;
+  box-shadow: none !important;
+}
+
+/* Line highlights / line numbers on the dark panel */
+.nextra-code-block pre code .line.highlighted,
+.nextra-code-block pre code .line .highlighted {
+  background: rgb(76 195 204 / 0.18) !important;
+  color: var(--shiki-color-text) !important;
+  box-shadow: inset 2px 0 0 #4cc3cc !important;
+}
+
+.nextra-code-block pre code[data-line-numbers] > .line::before {
+  color: oklch(70% 0.02 186) !important;
+  opacity: 0.9;
+}
+
+/* Copy / wrap controls */
+.nextra-code-block .nextra-button {
+  color: var(--pk-code-block-fg) !important;
+  border-color: rgb(232 243 244 / 0.25) !important;
+  background: rgb(10 21 23 / 0.35) !important;
+}
+
+.nextra-code-block .nextra-button:hover {
+  color: #ffffff !important;
+  background: rgb(10 21 23 / 0.55) !important;
 }
 
 .nextra-content :not(pre) > code {
@@ -167,4 +231,20 @@ footer hr {
   .pk-docs-footer-links {
     justify-content: flex-start;
   }
+}
+
+/* TOC sticky actions (feedback / edit) */
+.nextra-toc > div > .nx-border-t.nx-bg-white,
+.nextra-toc > div > .dark\:nx-bg-dark.nx-border-t {
+  background: var(--pk-surface-elevated) !important;
+  border-color: var(--pk-border) !important;
+  box-shadow: 0 -8px 16px var(--pk-surface) !important;
+}
+
+.nextra-toc .nx-border-t a {
+  color: var(--pk-ink-muted) !important;
+}
+
+.nextra-toc .nx-border-t a:hover {
+  color: var(--pk-primary) !important;
 }
