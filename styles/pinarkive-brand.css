@@ -1,0 +1,170 @@
+/* PinArkive — Arkive Teal (option-1), aligned with pinarkive-landing + pinarkive-frontend */
+
+:root {
+  --pk-primary: #0b6e78;
+  --pk-primary-hover: #095962;
+  --pk-primary-foreground: #ffffff;
+  --pk-primary-muted: #e0f2f3;
+  --pk-primary-muted-foreground: #0b6e78;
+  --pk-accent: #c8243a;
+  --pk-surface: #f6f9f9;
+  --pk-surface-elevated: #ffffff;
+  --pk-ink: #0f1f22;
+  --pk-ink-muted: #506569;
+  --pk-border: #cfdcdd;
+  --pk-border-strong: #889699;
+  --pk-theme-color: #0b6e78;
+  --pk-code-block-bg: #07464c;
+  --pk-code-block-fg: #e8f3f4;
+}
+
+.dark {
+  --pk-primary: #4cc3cc;
+  --pk-primary-hover: #3db5be;
+  --pk-primary-foreground: #04181a;
+  --pk-primary-muted: rgb(22 55 59 / 0.45);
+  --pk-primary-muted-foreground: #4cc3cc;
+  --pk-accent: #ff6b7d;
+  --pk-surface: #0a1517;
+  --pk-surface-elevated: #122123;
+  --pk-ink: #e8f3f4;
+  --pk-ink-muted: #9bb2b5;
+  --pk-border: #2a4246;
+  --pk-border-strong: #5c6f72;
+  --pk-theme-color: #0a1517;
+  --pk-code-block-bg: #16373b;
+  --pk-code-block-fg: #e8f3f4;
+}
+
+html {
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+}
+
+body {
+  background: var(--pk-surface) !important;
+  color: var(--pk-ink);
+}
+
+/* Navbar / sidebar surfaces (app + marketing elevated bar) */
+.nextra-nav-container-blur {
+  background: var(--pk-surface-elevated) !important;
+  border-bottom: 1px solid var(--pk-border);
+  box-shadow: 0 1px 0 rgb(15 31 34 / 0.04);
+}
+
+.dark .nextra-nav-container-blur {
+  box-shadow: 0 -1px 0 rgb(255 255 255 / 0.06) inset;
+}
+
+.nextra-sidebar-container,
+.dark .nx-bg-dark,
+.nx-bg-white.dark\:nx-bg-dark,
+footer.nx-bg-gray-100,
+.dark footer.nx-bg-neutral-900 {
+  background-color: var(--pk-surface-elevated) !important;
+}
+
+.nextra-sidebar-container .nx-border-t,
+footer hr {
+  border-color: var(--pk-border) !important;
+}
+
+/* Active nav item — primary muted (landing header pattern) */
+.nextra-sidebar-container a.nx-bg-primary-100 {
+  background: var(--pk-primary-muted) !important;
+  color: var(--pk-primary-muted-foreground) !important;
+}
+
+.dark .nextra-sidebar-container a.dark\:nx-bg-primary-400\/10 {
+  background: var(--pk-primary-muted) !important;
+  color: var(--pk-primary-muted-foreground) !important;
+}
+
+/* Links */
+.nextra-content a.nx-text-primary-600,
+.pk-nav-link:hover {
+  color: var(--pk-primary) !important;
+}
+
+.dark .nextra-content a.nx-text-primary-600 {
+  color: var(--pk-primary) !important;
+}
+
+/* Marketing-style text links in footer + navbar */
+.pk-nav-link {
+  color: var(--pk-ink-muted);
+}
+
+.pk-nav-link:hover {
+  color: var(--pk-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.pk-btn-primary {
+  background: var(--pk-primary) !important;
+  color: var(--pk-primary-foreground) !important;
+}
+
+.pk-btn-primary:hover {
+  background: var(--pk-primary-hover) !important;
+}
+
+/* Code blocks — app prose pre pattern */
+.nextra-content pre.nx-bg-primary-700\/5,
+.dark .nextra-content pre.dark\:nx-bg-primary-300\/10,
+.nextra-code-block pre {
+  background: var(--pk-code-block-bg) !important;
+  color: var(--pk-code-block-fg) !important;
+  border: 1px solid var(--pk-border-strong);
+}
+
+.nextra-content pre code,
+.nextra-code-block pre code {
+  background: transparent !important;
+  border: none !important;
+  color: inherit !important;
+}
+
+.nextra-content :not(pre) > code {
+  background: rgb(11 110 120 / 0.08) !important;
+  color: var(--pk-ink) !important;
+  border-color: var(--pk-border) !important;
+}
+
+.dark .nextra-content :not(pre) > code {
+  background: rgb(76 195 204 / 0.12) !important;
+  color: var(--pk-ink) !important;
+}
+
+/* Footer */
+.pk-docs-footer {
+  color: var(--pk-ink-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.pk-docs-footer a {
+  color: var(--pk-primary);
+  text-decoration: none;
+}
+
+.pk-docs-footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.pk-docs-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .pk-docs-footer-links {
+    justify-content: flex-start;
+  }
+}
