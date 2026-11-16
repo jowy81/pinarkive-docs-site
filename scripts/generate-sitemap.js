@@ -30,9 +30,9 @@ const ROUTES = [
   { path: 'reference/errors', priority: '0.7', changefreq: 'monthly' },
   { path: 'reference/rate-limits', priority: '0.7', changefreq: 'monthly' },
   { path: 'reference/status-codes', priority: '0.7', changefreq: 'monthly' },
+  { path: 'concepts', priority: '0.85', changefreq: 'monthly' },
   { path: 'concepts/gateways', priority: '0.8', changefreq: 'monthly' },
   { path: 'concepts/clusters', priority: '0.8', changefreq: 'monthly' },
-  { path: 'concepts/timelocks', priority: '0.8', changefreq: 'monthly' },
   { path: 'concepts/environments', priority: '0.8', changefreq: 'monthly' },
   { path: 'cli/installation', priority: '0.8', changefreq: 'monthly' },
   { path: 'cli/commands', priority: '0.8', changefreq: 'monthly' },
@@ -41,24 +41,51 @@ const ROUTES = [
   { path: 'examples/api-playground', priority: '0.7', changefreq: 'monthly' },
 ]
 
-function getLastmod(routePath) {
+function resolveMdxPath(routePath) {
   if (!routePath) {
-    const p = path.join(PAGES_DIR, 'index.mdx')
-    if (fs.existsSync(p)) {
-      return new Date(fs.statSync(p).mtime).toISOString().split('T')[0]
-    }
-    return new Date().toISOString().split('T')[0]
+    return path.join(PAGES_DIR, 'index.mdx')
   }
   const segments = routePath.split('/')
-  const file = segments.length === 1 ? `${segments[0]}.mdx` : path.join(...segments.slice(0, -1), `${segments[segments.length - 1]}.mdx`)
-  const fullPath = path.join(PAGES_DIR, file)
-  if (fs.existsSync(fullPath)) {
+  const asIndex = path.join(PAGES_DIR, ...segments, 'index.mdx')
+  if (fs.existsSync(asIndex)) {
+    return asIndex
+  }
+  const asLeaf = path.join(
+    PAGES_DIR,
+    ...segments.slice(0, -1),
+    `${segments[segments.length - 1]}.mdx`
+  )
+  if (fs.existsSync(asLeaf)) {
+    return asLeaf
+  }
+  return null
+}
+
+function getLastmod(routePath) {
+  const fullPath = resolveMdxPath(routePath)
+  if (fullPath && fs.existsSync(fullPath)) {
     return new Date(fs.statSync(fullPath).mtime).toISOString().split('T')[0]
   }
   return new Date().toISOString().split('T')[0]
 }
 
-const urls = ROUTES.map(({ path: p, priority, changefreq }) => {
+const included = []
+const skipped = []
+
+for (const route of ROUTES) {
+  const mdx = resolveMdxPath(route.path)
+  if (!mdx) {
+    skipped.push(route.path || '(home)')
+    continue
+  }
+  included.push(route)
+}
+
+if (skipped.length > 0) {
+  console.warn('Skipping sitemap entries (no MDX):', skipped.join(', '))
+}
+
+const urls = included.map(({ path: p, priority, changefreq }) => {
   const loc = p ? `${SITE_URL}/${p}` : `${SITE_URL}/`
   const lastmod = getLastmod(p)
   return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`
@@ -74,4 +101,4 @@ const outPath = path.join(__dirname, '..', 'public', 'sitemap.xml')
 fs.mkdirSync(path.dirname(outPath), { recursive: true })
 fs.writeFileSync(outPath, xml, 'utf8')
 console.log('Wrote', outPath)
-console.log('URLs:', ROUTES.length)
+console.log('URLs:', included.length)
