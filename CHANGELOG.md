@@ -3,7 +3,7 @@
 ## 2026-11-16
 
 - Add Concepts overview at `/concepts` (index page) linking to gateways, clusters, environments, and timelocks.
-- Sitemap: include `/concepts`; drop `/concepts/timelocks` from the route list until it is listed for release; generator skips routes with no matching MDX.
+- Sitemap: include `/concepts` and `/concepts/timelocks`; generator skips routes with no matching MDX.
 - Sitemap generator resolves `index.mdx` under route folders.
 
 ## 2026-11-10
