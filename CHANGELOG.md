@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-16
+
+- Add Concepts overview at `/concepts` (index page) linking to gateways, clusters, environments, and timelocks.
+- Sitemap: include `/concepts` and `/concepts/timelocks`; generator skips routes with no matching MDX.
+- Sitemap generator resolves `index.mdx` under route folders.
+
 ## 2026-11-10
 
 - Light mode: fenced code blocks keep the dark teal panel and use dark-theme Shiki token colors so syntax, copy controls, and line highlights stay readable (matches playground).
